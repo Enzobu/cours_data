@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS data (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    city VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    price VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS cleanData (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    city VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    price FLOAT,
+    unitPrice VARCHAR(255)
+);
+
+CREATE TABLE links (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    country VARCHAR(255) NOT NULL,
+    country_link VARCHAR(255) NOT NULL
+);
