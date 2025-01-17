@@ -2,7 +2,7 @@
 
 Pour lancer le projet, exécuter le `docker-compse.yaml` à la racine du projet:
 ```bash
-docker-compose --build -d
+docker-compose up --build -d
 ```
 
 # Utilisation :
