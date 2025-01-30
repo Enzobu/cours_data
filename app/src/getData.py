@@ -1,74 +1,92 @@
-import requests
-from bs4 import BeautifulSoup
-import pandas as pd
-import re
-import mysql.connector
-import time
+import mysql.connector # type: ignore
+import pandas as pd # type: ignore
 
-if __name__ == '__main__':
+from getData.getCostOfLifeData import getCostOfLifeData
 
-    conn = mysql.connector.connect(
-        host='mysql',
-        user='root',
-        password='root',
-        database='cours_data',
-        port=3306
-    )
-    cursor = conn.cursor()
+from getData.getCrimeData import getCrimeData
+from getData.getHealthCareData import getHealthCareData
+from getData.getPollutionData import getPollutionData
+from getData.getQualityOfLifeData import getQualityOfLifeData
 
-    urls = []
+conn = mysql.connector.connect(
+    host='mysql',
+    user='root',
+    password='root',
+    database='cours_data',
+    port=3306
+)
+cursor = conn.cursor()
 
-    cursor.execute("SELECT country_link FROM links")
-    data = cursor.fetchall()
-    for row in data:
-        urls.append(row[0])
+base_urls = {
+    "costOfLife": "https://www.numbeo.com/cost-of-living/",
+    "crime": "https://www.numbeo.com/crime/",
+    "healthCare": "https://www.numbeo.com/health-care/",
+    "pollution": "https://www.numbeo.com/pollution/",
+    "qualityOfLife": "https://www.numbeo.com/quality-of-life/",
+}
 
-    col0 = []
-    col1 = []
-    col2 = []
+urls = []
 
-    n = 1
+cursor.execute("SELECT country_link FROM links")
+data = cursor.fetchall()
+for row in data:
+    urls.append(row[0])
 
-    for url in urls:
-        ville = re.search(r"country=([^&]+)", url).group(1)
+dfs = []
 
-        print(f"Récupération pour {ville}. No = {n}")
+print("=============================================")
+df_costOfLife = getCostOfLifeData(urls, base_urls['costOfLife'])
+dfs.append({
+    "table": "cost_of_life_data",
+    "df": df_costOfLife,
+})
 
-        response = requests.get(url)
-        soup = BeautifulSoup(response.content, 'html.parser')
+print("=============================================")
+df_crime = getCrimeData(urls, base_urls['crime'])
+dfs.append({
+    "table": "crime_data",
+    "df": df_crime,
+})
 
-        table = soup.select('table.data_wide_table')[0]
-        trList = table.select('tr')
+print("=============================================")
+df_healthCare = getHealthCareData(urls, base_urls['healthCare'])
+dfs.append({
+    "table": "health_care_data",
+    "df": df_healthCare,
+})
 
-        for tr in trList:
-            if tr.select('td'):
-                td_desc = tr.select('td')[0].text
-                price = tr.select('td.priceValue')[0].text
-                col0.append(ville)
-                col1.append(td_desc)
-                col2.append(price)
-        time.sleep(0.5)
-        n+=1
+print("=============================================")
+df_pollution = getPollutionData(urls, base_urls['pollution'])
+dfs.append({
+    "table": "pollution_data",
+    "df": df_pollution,
+})
 
-    result = {
-        "city": col0,
-        "description": col1,
-        "price": col2
-    }
+print("=============================================")
+df_qualityOfLife = getQualityOfLifeData(urls, base_urls['qualityOfLife'])
+dfs.append({
+    "table": "quality_of_life_data",
+    "df": df_qualityOfLife,
+})
 
-    df = pd.DataFrame(result)
 
-    for index, row in df.iterrows():
-        city = row['city']
+for df in dfs:
+    for index, row in df["df"].iterrows():
+        table = df["table"]
+
+        country = row['country']
         description = row['description']
-        price = row['price']
+        value = row['value']
+        unit = row['unit']
+        
 
-        sql = "INSERT INTO data (city, description, price) VALUES (%s, %s, %s)"
-        cursor.execute(sql, (city, description, price))
+        sql = f"INSERT INTO {table} (country, description, value, unit) VALUES (%s, %s, %s, %s)"
+        cursor.execute(sql, (country, description,value, unit))
 
+    print(f"Les données ont été insérées avec succès dans la table {table}")
     conn.commit()
 
-    cursor.close()
-    conn.close()
+cursor.close()
+conn.close()
 
-    print("Les données ont été insérées avec succès.")
+print("Processus terminé avec succès.")
