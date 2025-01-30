@@ -1,7 +1,7 @@
 import requests
-from bs4 import BeautifulSoup
-import pandas as pd
-import mysql.connector
+from bs4 import BeautifulSoup # type: ignore
+import pandas as pd # type: ignore
+import mysql.connector # type: ignore
 
 if __name__ == '__main__':
     conn = mysql.connector.connect(
@@ -28,18 +28,21 @@ if __name__ == '__main__':
 
         soup = BeautifulSoup(response.content, 'html.parser')
 
-        # Récupérer toutes les tables avec la classe `related_links`
         tables = soup.select('table.related_links')
 
-        # Parcourir chaque table et extraire les données
-        base_url = "https://www.numbeo.com/cost-of-living/"
+        base_url = ""
+
+        n = 1
+
         for table in tables:
-            trList = table.select('a')  # Sélectionner tous les liens dans la table
+            trList = table.select('a') 
             for tr in trList:
                 country = tr.text.strip()
                 country_link = base_url + tr['href']
                 col0.append(country)
                 col1.append(country_link)
+                print(f"Récupération du lien N°{n}")
+                n+=1
 
     result = {
         "country": col0,
@@ -48,7 +51,6 @@ if __name__ == '__main__':
 
     df = pd.DataFrame(result)
 
-    # Insérer dans la base de données
     for index, row in df.iterrows():
         country = row['country']
         country_link = row['country_link']
