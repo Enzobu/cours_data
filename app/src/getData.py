@@ -19,7 +19,7 @@ base_urls = {
 
 urls = getLinksFromDb()
 
-sleep = 2
+sleep = 0.2
 
 print(" ========== Début de la récupération des datas relative à \"costOfLife\" ========== ")
 df_costOfLife = getCostOfLifeData(urls, base_urls['costOfLife'], sleep)
