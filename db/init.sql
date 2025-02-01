@@ -5,10 +5,8 @@ CREATE TABLE IF NOT EXISTS links (
 );
 
 
-
-
 -- cost_of_life
-CREATE TABLE IF NOT EXISTS cost_of_life_data (
+CREATE TABLE IF NOT EXISTS data_cost_of_life (
     id INT AUTO_INCREMENT PRIMARY KEY,
     country VARCHAR(255),
     description TEXT,
@@ -16,17 +14,17 @@ CREATE TABLE IF NOT EXISTS cost_of_life_data (
     unit VARCHAR(255)
 );
 
--- CREATE TABLE IF NOT EXISTS cost_of_life_cleanData (
---     id INT AUTO_INCREMENT PRIMARY KEY,
---     country VARCHAR(255) NOT NULL,
---     description TEXT NOT NULL,
---     price FLOAT,
---     unitPrice VARCHAR(255)
--- );
+CREATE TABLE IF NOT EXISTS clean_data_cost_of_life (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    country VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    price FLOAT NOT NULL,
+    unitPrice VARCHAR(255) NOT NULL
+);
 
 
 -- crime
-CREATE TABLE IF NOT EXISTS crime_data (
+CREATE TABLE IF NOT EXISTS data_crime (
     id INT AUTO_INCREMENT PRIMARY KEY,
     country VARCHAR(255),
     description TEXT,
@@ -34,17 +32,17 @@ CREATE TABLE IF NOT EXISTS crime_data (
     unit VARCHAR(255)
 );
 
--- CREATE TABLE IF NOT EXISTS crime_cleanData (
---     id INT AUTO_INCREMENT PRIMARY KEY,
---     country VARCHAR(255) NOT NULL,
---     description TEXT NOT NULL,
---     price FLOAT,
---     unitPrice VARCHAR(255)
--- );
+CREATE TABLE IF NOT EXISTS clean_data_crime (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    country VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    value FLOAT NOT NULL,
+    unit VARCHAR(255) NOT NULL
+);
 
 
 -- health_care
-CREATE TABLE IF NOT EXISTS health_care_data (
+CREATE TABLE IF NOT EXISTS data_health_care (
     id INT AUTO_INCREMENT PRIMARY KEY,
     country VARCHAR(255),
     description TEXT,
@@ -52,17 +50,17 @@ CREATE TABLE IF NOT EXISTS health_care_data (
     unit VARCHAR(255)
 );
 
--- CREATE TABLE IF NOT EXISTS health_care_cleanData (
---     id INT AUTO_INCREMENT PRIMARY KEY,
---     country VARCHAR(255) NOT NULL,
---     description TEXT NOT NULL,
---     price FLOAT,
---     unitPrice VARCHAR(255)
--- );
+CREATE TABLE IF NOT EXISTS clean_data_health_care (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    country VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    value FLOAT NOT NULL,
+    unit VARCHAR(255) NOT NULL
+);
 
 
 -- pollution
-CREATE TABLE IF NOT EXISTS pollution_data (
+CREATE TABLE IF NOT EXISTS data_pollution (
     id INT AUTO_INCREMENT PRIMARY KEY,
     country VARCHAR(255),
     description TEXT,
@@ -70,17 +68,17 @@ CREATE TABLE IF NOT EXISTS pollution_data (
     unit VARCHAR(255)
 );
 
--- CREATE TABLE IF NOT EXISTS pollution_cleanData (
---     id INT AUTO_INCREMENT PRIMARY KEY,
---     country VARCHAR(255) NOT NULL,
---     description TEXT NOT NULL,
---     price FLOAT,
---     unitPrice VARCHAR(255)
--- );
+CREATE TABLE IF NOT EXISTS clean_data_pollution (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    country VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    value FLOAT NOT NULL,
+    unit VARCHAR(255) NOT NULL
+);
 
 
 -- quality_of_life
-CREATE TABLE IF NOT EXISTS quality_of_life_data (
+CREATE TABLE IF NOT EXISTS data_quality_of_life (
     id INT AUTO_INCREMENT PRIMARY KEY,
     country VARCHAR(255),
     description TEXT,
@@ -88,10 +86,10 @@ CREATE TABLE IF NOT EXISTS quality_of_life_data (
     unit VARCHAR(255)
 );
 
--- CREATE TABLE IF NOT EXISTS quality_of_life_cleanData (
---     id INT AUTO_INCREMENT PRIMARY KEY,
---     country VARCHAR(255) NOT NULL,
---     description TEXT NOT NULL,
---     price FLOAT,
---     unitPrice VARCHAR(255)
--- );
+CREATE TABLE IF NOT EXISTS clean_data_quality_of_life (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    country VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    value FLOAT NOT NULL,
+    unit VARCHAR(255) NOT NULL
+);
