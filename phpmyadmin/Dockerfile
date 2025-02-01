@@ -1,9 +1,0 @@
-FROM phpmyadmin/phpmyadmin:5.0
-
-ENV PMA_HOST=mysql
-ENV PMA_PORT=3306
-ENV PMA_USER=root
-ENV PMA_PASSWORD=root
-ENV MYSQL_DATABASE=cours_data
-
-EXPOSE 80
