@@ -6,14 +6,6 @@ import mysql.connector
 
 if __name__ == '__main__':
 
-    conn = mysql.connector.connect(
-        host='mysql',
-        user='root',
-        password='root',
-        database='cours_data',
-        port=3306
-    )
-    cursor = conn.cursor()
 
     cursor.execute("SELECT * FROM data")
     data = cursor.fetchall()

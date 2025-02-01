@@ -1,16 +1,10 @@
 import requests
 from bs4 import BeautifulSoup # type: ignore
 import pandas as pd # type: ignore
-import mysql.connector # type: ignore
+from db.getConn import getConn
 
 if __name__ == '__main__':
-    conn = mysql.connector.connect(
-        host='mysql',
-        user='root',
-        password='root',
-        database='cours_data',
-        port=3306
-    )
+    conn = getConn()
     cursor = conn.cursor()
 
     urls = [

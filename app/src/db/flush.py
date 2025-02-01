@@ -1,13 +1,7 @@
-import mysql.connector # type: ignore
+from db.getConn import getConn
 
 def flush(dict):
-    conn = mysql.connector.connect(
-        host='mysql',
-        user='root',
-        password='root',
-        database='cours_data',
-        port=3306
-    )
+    conn = getConn()
     cursor = conn.cursor()
 
     for index, row in dict["df"].iterrows():
