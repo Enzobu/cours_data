@@ -17,7 +17,7 @@ services:
     container_name: cours_data_mysql
     restart: unless-stopped
     ports:
-      - "3306:3306"
+      - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: cours_data
@@ -33,7 +33,7 @@ services:
     container_name: cours_data_phpmyadmin
     restart: unless-stopped
     ports:
-      - "8080:80"
+      - "8001:80"
     environment:
       PMA_HOST: mysql
       PMA_PORT: 3306
