@@ -6,8 +6,8 @@ from getData.getHealthCareData import getHealthCareData
 from getData.getPollutionData import getPollutionData
 from getData.getQualityOfLifeData import getQualityOfLifeData
 
-from getLinksFromDb import getLinksFromDb
-from flush import flush
+from db.getLinksFromDb import getLinksFromDb
+from db.flush import flush
 
 base_urls = {
     "costOfLife": "https://www.numbeo.com/cost-of-living/",
