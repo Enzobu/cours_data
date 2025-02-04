@@ -26,4 +26,4 @@ def getCostOfLifeCleanData():
         lambda p: pd.Series(extract_value_and_currency(p))
     )
 
-    flushCostOfLifeData(df)
+    return df

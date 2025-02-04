@@ -16,4 +16,4 @@ def getQualityOfLifeCleanData():
     # Supprimer les ligne pour lesquelles la colonne 'value' n'est pas un nombre
     df = df[pd.to_numeric(df['value'], errors='coerce').notna()]
 
-    flushQualityOfLifeData(df)
+    return df
