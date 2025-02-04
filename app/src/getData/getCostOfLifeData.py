@@ -4,8 +4,10 @@ import pandas as pd # type: ignore
 import re
 import time
 
+from db.getLinksFromDb import getLinksFromDb
 
-def getCostOfLifeData(urls, base_url, sleep):
+
+def getCostOfLifeData(urls, base_url, sleep = .2):
     col0 = []
     col1 = []
     col2 = []
@@ -64,3 +66,8 @@ def getCostOfLifeData(urls, base_url, sleep):
     df = pd.DataFrame(result)
 
     return df
+
+if __name__ == "main":
+    urls = getLinksFromDb()
+    base_url = "https://www.numbeo.com/cost-of-living/"
+    getCostOfLifeData(urls, base_url)

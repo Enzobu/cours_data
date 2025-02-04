@@ -4,8 +4,10 @@ import pandas as pd # type: ignore
 import re
 import time
 
+from db.getLinksFromDb import getLinksFromDb
 
-def getCrimeData(urls, base_url, sleep):
+
+def getCrimeData(urls, base_url, sleep = .2):
     col0 = []
     col1 = []
     col2 = []
@@ -64,3 +66,8 @@ def getCrimeData(urls, base_url, sleep):
     df = pd.DataFrame(result)
 
     return df
+
+if __name__ == "__main__":
+    urls = getLinksFromDb()
+    base_url = "https://www.numbeo.com/crime/"
+    getCrimeData(urls, base_url)

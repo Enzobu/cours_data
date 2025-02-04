@@ -4,8 +4,10 @@ import pandas as pd # type: ignore
 import re
 import time
 
+from db.getLinksFromDb import getLinksFromDb
 
-def getQualityOfLifeData(urls, base_url, sleep):
+
+def getQualityOfLifeData(urls, base_url, sleep = .2):
     col0 = []
     col1 = []
     col2 = []
@@ -64,3 +66,8 @@ def getQualityOfLifeData(urls, base_url, sleep):
     df = pd.DataFrame(result)
 
     return df
+
+if __name__ == "main":
+    urls = getLinksFromDb()
+    base_url = "https://www.numbeo.com/quality-of-life/"
+    getQualityOfLifeData(urls, base_url)
