@@ -8,7 +8,8 @@ RUN pip install --no-cache-dir \
     ipykernel \
     requests \
     mysql \
-    mysql-connector-python
+    mysql-connector-python \
+    scikit-learn
 
 RUN echo "alias ll='ls -al'" >> /root/.bashrc
 
