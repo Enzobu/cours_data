@@ -2,7 +2,6 @@ import pandas as pd # type: ignore
 import re
 
 from db.getDataFromDb import getDataFromDb
-from db.flushCleanData import flushCostOfLifeData
 
 def getCostOfLifeCleanData():
     data = getDataFromDb('data_cost_of_life')
@@ -25,4 +24,3 @@ def getCostOfLifeCleanData():
     df[["value", "unitValue"]] = df["value"].apply(
         lambda p: pd.Series(extract_value_and_currency(p))
     )
-

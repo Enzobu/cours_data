@@ -11,9 +11,7 @@ def getCrimeCleanData():
 
     df = df.dropna()
     df = df.drop_duplicates()
-    # Supprimer les ligne pour lesquelles il y a '?' dans une des colonnes
     df = df[~df.applymap(lambda x: '?' in str(x)).any(axis=1)]
-    # Supprimer les ligne pour lesquelles la colonne 'value' n'est pas un nombre
     df = df[pd.to_numeric(df['value'], errors='coerce').notna()]
 
     return df
