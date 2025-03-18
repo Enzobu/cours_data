@@ -22,5 +22,5 @@ docker exec -it cours_data_python bash
 ### Exécution du/des fichier(s) python
 Lancer le script :
 ```bash
-./py.sh [-h]
+./py.sh -h
 ```
