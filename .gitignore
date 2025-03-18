@@ -3,5 +3,7 @@ app/src/getData/__pycache__
 app/src/__pycache__
 app/src/db/__pycache__
 app/src/getCleanData/__pycache__
+app/src/matrix/__pycache__
+app/src/predict/__pycache__
 Notes.md
 .vscode
