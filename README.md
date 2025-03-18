@@ -24,3 +24,6 @@ Lancer le script :
 ```bash
 ./py.sh -h
 ```
+### Ordre d'exécution
+- getLink.py : Pour récupérer les liens de chaque pays
+- getData.py : Pour récupérer les 
