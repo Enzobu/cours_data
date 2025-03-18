@@ -5,9 +5,11 @@ from getData.getCrimeData import getCrimeData
 from getData.getHealthCareData import getHealthCareData
 from getData.getPollutionData import getPollutionData
 from getData.getQualityOfLifeData import getQualityOfLifeData
+from getData.getCrimeIndex import getCrimeIndex
 
 from db.getLinksFromDb import getLinksFromDb
 from db.flush import flush
+from db.flushCrimeIndex import flushCrimeIndex
 
 base_urls = {
     "costOfLife": "https://www.numbeo.com/cost-of-living/",
@@ -24,7 +26,7 @@ sleep = 0.2
 print(" ========== Début de la récupération des datas relative à \"costOfLife\" ========== ")
 df_costOfLife = getCostOfLifeData(urls, base_urls['costOfLife'], sleep)
 flush({
-    "table": "cost_of_life_data",
+    "table": "data_cost_of_life",
     "df": df_costOfLife,
 })
 
@@ -55,5 +57,9 @@ flush({
     "table": "quality_of_life_data",
     "df": df_qualityOfLife,
 })
+
+print(" ========== Début de la récupération des datas relative à \"Crime index\" ========== ")
+df_crime_index = getCrimeIndex()
+flushCrimeIndex(df_crime_index)
 
 print("Processus terminé avec succès.")
